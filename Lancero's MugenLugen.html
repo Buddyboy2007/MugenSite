@@ -1,163 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ikemen Character Roster</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Press Start 2P', cursive;
-            background: radial-gradient(circle at top, #0d0d0d, #1a1a1a);
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: linear-gradient(to right, #ff4d4d, #ffcc00);
-            padding: 25px;
-            text-align: center;
-            font-size: 2em;
-            color: #0d0d0d;
-            text-shadow: 2px 2px #000000;
-        }
-        #searchBox, #homeButtons {
-            display: block;
-            margin: 20px auto;
-            width: 80%;
-            text-align: center;
-        }
-        #searchBox {
-            padding: 12px;
-            font-size: 1em;
-            background-color: #222;
-            border: 2px solid #555;
-            color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 15px #ffcc00;
-        }
-        #homeButtons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        #homeButtons button {
-            margin: 5px;
-            padding: 12px 18px;
-            font-size: 1em;
-            background: linear-gradient(45deg, #ff4d4d, #4d4dff);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 0 10px #000;
-        }
-        #homeButtons button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px #fff;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 auto 50px auto;
-            max-width: 800px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        li {
-            padding: 8px 12px;
-            margin: 5px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-shadow: 1px 1px #000;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        li:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px #fff;
-        }
-        #backButton {
-            display: block;
-            margin: 20px auto;
-            padding: 12px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(45deg, #ffcc00, #ff4d4d);
-            color: #0d0d0d;
-            cursor: pointer;
-            box-shadow: 0 0 15px #000;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        #backButton:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px #fff;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUGEN Character Roster</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    background: #111;
+    color: #fff;
+}
+#leftPanel, #rightPanel {
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+#leftPanel {
+    width: 25%;
+    background: #222;
+    display: none;
+}
+#letters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#letters button, #homeButtons button, #backHomeBtn {
+    padding: 20px;
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(145deg, #222, #555);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #fff;
+    text-shadow: 1px 1px #000;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+#letters button:hover, #homeButtons button:hover, #backHomeBtn:hover {
+    transform: scale(1.05);
+}
+@keyframes glitch {
+    0% { clip: rect(0, 9999px, 0, 0); transform: translate(0,0); }
+    10% { clip: rect(0, 9999px, 5px, 0); transform: translate(-2px,2px); }
+    20% { clip: rect(5px, 9999px, 10px, 0); transform: translate(2px,-2px); }
+    30% { clip: rect(10px, 9999px, 15px, 0); transform: translate(-2px,0); }
+    40% { clip: rect(15px, 9999px, 20px, 0); transform: translate(2px,2px); }
+    50% { clip: rect(0, 9999px, 0, 0); transform: translate(0,0); }
+    100% { clip: rect(0, 9999px, 0, 0); transform: translate(0,0); }
+}
+.glitch {
+    animation: glitch 0.3s steps(2, end);
+}
+#rightPanel {
+    width: 75%;
+    border-left: 2px solid #444;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+#rightPanel h2 {
+    color: #ffcc00;
+}
+#rightPanel a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+#rightPanel a:hover {
+    text-decoration: underline;
+}
+.charDescription {
+    margin-top: 15px;
+    padding: 15px;
+    background: #222;
+    border-left: 5px solid #ff4d4d;
+    border-radius: 5px;
+    line-height: 1.6;
+}
+.charDescription h3 {
+    margin: 0 0 10px 0;
+}
+.charDescription p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+#homeScreen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+#homeButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+</style>
 </head>
 <body>
-    <header>MUGEN Character Roster</header>
-    <div id="homePage">
-        <div id="homeButtons"></div>
+
+<div id="leftPanel">
+    <h2>Character List</h2>
+    <button id="backHomeBtn">Back to Home</button>
+    <div id="letters"></div>
+</div>
+
+<div id="rightPanel">
+    <div id="homeScreen">
+        <div id="homeButtons">
+            <button id="enterList">Enter Character List</button>
+            <button id="mugenWiki">MUGEN Wiki</button>
+        </div>
     </div>
-    <div id="characterPage" style="display:none;">
-        <input type="text" id="searchBox" placeholder="Search characters...">
-        <ul id="characterList"></ul>
-        <button id="backButton" onclick="goHome()">Back to Home</button>
-    </div>
+    <div id="characterInfo"></div>
+</div>
 
-    <script>
-        const characters = [
-            "119way-mario","AI-SonicMHII","AI-ShadowMHII","AI-bison","Alucard","Anakin","Another God Akuma","Arthas","Armor_VegetaZ2","AVGN","Bardock_BT","Balrog","Beerus","Beerus","Betty Nor","Black_Apocalypse","BlackZ2i - Anime Version","Bulla","BrolyNew","BrolyZ2","C18Z2","Cell","Chara lv20","Charmx","Chun_LI_JJ","Chunli","Chris","Chuck Norris","Classic_Sonic","CFJ_Liu_Kang","CVS_Cammy","cvshaohmaru_ex","cvszangief_ex","DaigoKen","D-Donald","Devil Jin","Devil_Jin","Devil_Mario_Prime","Dirty kf man","Dragon-Ken","dracula","DSB Broly Movie Goku","Evil Ryu","EvilRyu","Emperor_Frieza","Etika","Exetior Remake Version","Flamme","fei-long","Future_Gohan","Giygas","God_Goku","Goku Black SSR","Goku Legend SSJ","GokuSSJ4_EB","Goku Ultra Instinto Dominado","Gokuub22V3","Gohan Blanco","GohanBeastZ2","Guile","guile xi","Guy","Hel01","Honda_unotag","HyperGoDRyu","I_Wanna_Be_The_Ryu","Iori","Iori-KOF98","IORI-HOMER","JAGI","J_Mary","J_shermie","Jacksepticeye","Jin_Kazama","Jin_Kisaragi_XI","Jerma985","Joe-KOF98","Joe Swanson","Johnny Cage MKT","KAGE 2.0","KaiSenseiRyu","KaiSensei_Ken","kaguramutsuki","KENSHIROU_AI-Patch","KENSHIRONEW","KenMasters","Kenoh","Kenoh[FleshdoomDBL&Lordmike]","kenshiro-KOFM","Kenshiro_C2","KidGokuZ2i","KoopaClownCar_IWBTG","KOF_Tung_Fu_Rue","Kratos","KrillinZ2","koryu","Kung Fu Girl","Kyoko","Legendary Bogard 1.0","LittleMac-KOFM","Lord Soma","LORD Igniz-Boss","Lyzer","Man of the Benevolent star","Markiplier","MasterKen","MasterRyu","MIKU_APPEND","MIKU_Natural","Miku Hatsune","MikeTyson_IWBTG","Morshu","MVC Miku","MVC1PatrickStar","N-Ralf","NappaTA","New Madness Mario","New Nightmare Broly","Nightmare","Nitro Supreme Hatsune Miku","NormalKen","NormalRyu","norris","OL_Yamcha","ObamaBossFight","OWRemakeV2","OWRemakeV2","omega weegee remake","omega weegee remake","oni-akuma-kofa","Paladin","PeachMYTHOS","P-Cell_KN.Edit","PiccoloZ2","POWERSTARMario","peter","pyron_cvs","Qi-Hao-Long","Raditz","Raditz_KN.Edit","RagnaDSG","Reggie-Skatore","RED","Rei_AI-Patch","Remake Version","Ryougi","Rocky","Rozwel Gustab AI","R_Gouki","Sagat","SagatMG","Sakuya","SFZ_Ehnyd","Shin","Shin Akuma","Shin_AI-Patch","SHIN RYU","ShinSmoke Ryu","Shadow","Shadow JUS Updated","Shaqu","Silver","Sonic V1.0","Spiderman","spengbab","SSG_GokuZ2","SSGSS_GokuZ2","SSJ 2 GokuZ2","SSJ3_GokuZ2i","SSJ4Blory_KN.edit","SSJBlue_VegettoZ2","SSJ_Goku_LegendaryZ2","Super Better Luigi","Super Better Mario","Super Better Yoshi","Super Bad Mario","Super Goku Boss Ultimate","Super Gogeta4","Super Vegetto4","SuperVegettoAI","Supa Cirno","Symbiote_Spiderman","TailsMHII","TenShinHanZ2","TerranceBongo","Terry-KOF98","Thaldrix","ThoutherMario","the-kung-fu-man","TJ Combo","Tohno Akiha","Toriel","TurboModeGouki","Ultimate_Bad_Time_Sans_R","Ultimate_Ken","Ultimate_Ryu","UC.Falcon","VGA_bowser","Vegeta All Forms","Vegeta Super Transform 1.6","VegettoBlue","VegettoBlue_KN","VegettoZ2","Violent Ken SF3","wario","Washizuka3","Xeno GogetaSSJ4","XRyu","YamchaZ2i","Yang","yujiro","yuki","Zorf-slc","Zhou Lee","Zarak"
-        ];
+<script>
+const characters = [
+"MvC2Hulk","MvC2_Thor","Thor_AvX","Spiderman","Symbiote_Spiderman",
+"Ryo-KOF98","ITF_Kim","Joe-KOF98","Geese-KOF98","Iori-KOF98","Terry-KOF98",
+"Legendary Bogard 1.0","TerranceBongo","Haohmaru-KOF98","N-Ralf","Iori","LORD Igniz-Boss",
+"119way-mario","rock9","Nakoruru_Kofe","KOF_Tung_Fu_Rue","Washizuka3","cvshaohmaru_ex","Zorf-slc",
+"Iori Yagami CTN Lv2-KOFM","Kratos",
+"KENSHIROU_AI-Patch","KENSHIRONEW","kenshiro-KOFM","Kenshiro_C2","Kenoh","Kenoh[FleshdoomDBL&Lordmike]",
+"TOKI_AI-Patch","Shin_AI-Patch","Definitive Rei AI Alt","Rei_AI-Patch","JAGI","Man of the Benevolent star","ThoutherMario",
+"kfmZ","kfm720","Dirty kf man","the-kung-fu-man","Kung Fu Girl",
+"yujiro","baki","chicken","Joe Swanson","peter","chris",
+"shaq","jimmyhere","Markiplier","Charmx","jacksepticeye","AVGN","MIKU_APPEND","Miku Hatsune","MIKU_Natural",
+"RacingMiku2014_EV","Nitro Supreme Hatsune Miku","MVC Miku",
+"dhalsim","AI-bison","fei-long","sfz3adon","Chun_LI_JJ","Chunli","MvC2_Juri Han",
+"sakura","CVS_Cammy","Sagat","Honda_unotag","SagatMG","TurboModeGouki","oni-akuma-kofa","cvszangief_ex",
+"NormalKen","hurry_Ken","Ultimate_Ken","DaigoKen","MasterKen","KenMasters","Dragon-Ken","Violent Ken SF3","KaiSensei_Ken",
+"Guile","guile xi","Guy",
+"NormalRyu","CyberRyu","ShinSmoke Ryu","XRyu","heavy combo ryu","SegaGenesisRyu","EvilRyu","Ultimate_Ryu","koryu",
+"Zhou Lee","Shadow","KAGE 2.0","SHIN RYU","KaiSenseiRyu","Evil Ryu","MasterRyu","HyperGoDRyu","I_Wanna_Be_The_Ryu",
+"GokuSSJ4_EB","Goku Ultra Instinto Dominado","Xeno GogetaSSJ4","Emperor_Frieza","Cell","UI_GokuZ2","GohanBeastZ2","Songohan_CS",
+"Future_Gohan","Bardock_BT","Gokuub22V3","DBS Broly Movie Goku","Universal Tournament Goku","Songoku_US","Vegeta Super Transform 1.6",
+"OL_Yamcha","JirenZ2","Beerus","Ultra Instinct Goku",
+"KidGokuZ2i","GokuZ2_1.0-ai","SSJ_Goku_LegendaryZ2","SSJ 2 GokuZ2","SSJ3_GokuZ2i","SSG_GokuZ2","SSGSS_GokuZ2","BlackZ2i - Anime Version",
+"C18Z2","PiccoloZ2","YamchaZ2i","TenShinHanZ2","KrillinZ2","Raditz","NappaTA","Armor_VegetaZ2","VegettoZ2","SSJBlue_VegettoZ2",
+"Majin_Buu","FreezaZ2","Rose_Black","Beerus","BrolyNew","BrolyZ2",
+"Raditz_KN.Edit","Turles","P-Cell_KN.Edit","SSJ4Blory_KN.edit","VegettoBlue_KN",
+"SuperVegettoAI","Gogeta SSJ","New Nightmare Broly","nightmare","Super Gogeta4","GogetaSuper4","Super Vegetto4","VegettoBlue","Revenge Broli",
+"Vegeta All Forms","Gohan Blanco","God_Goku","Gogeta SSJ4","Goku Black SSR","Goku Legend SSJ","Super Goku Boss Ultimate","Bulla",
+"Ippo","LittleMac-KOFM","Rocky","miketyson","Balrog","TJ Combo","MikeTyson_IWBTG",
+"UC.Falcon","Supa Cirno","Etika","Morshu","Jerma985","OWRemakeV2","omega weegee remake","UncleJogel","Reggie-Skatore","Qi-Hao-Long","memelord",
+"Devil Jin","Kazuya","Devil_Jin","Jin_Kazama",
+"scorpionJUAN","MK1_RAIDEN","MK1_SUB-ZERO","MK1_CAGE","MK1_LIU-KANG","Johnny Cage MKT","CFJ_Liu_Kang",
+"Strider Hiryu","AI-eric","SFZ_Ehnyd","alucard_C","Alucard","Lord Soma","Soma Cruz",
+"Adel-BOSS","Ethos","Monika_B","ObamaBossFight",
+"Jin_Kisaragi_XI","kaguramutsuki","RagnaDSG","Yang",
+"pyron_cvs","Black_Apocalypse",
+"dracula","Schlussel-Pre-1.1",
+"AI-SonicMHII","Classic_Sonic","TailsMHII","KnuxMHII","silver","AI-ShadowMHII","Shadow JUS Updated","Sonic V1.0","Knuckles",
+"RED","Exetior Remake Version","Giygas","minosPRIME","norris","D-Donald",
+"Anakin","Paladin","Shin","akan","franza","kryo","Warrior_C","Thaldrix","Zarak","Chuck Norris","Arthas",
+"The Flash","randomness11","SHUMAWTF_Pingu",
+"Another God Akuma","R_Gouki","Shin Akuma","RareAkuma",
+"IORI-HOMER","destinydio",
+"Super Better Mario","Super Better Luigi","Super Better Yoshi","PeachMYTHOS","VGA_bowser","Super Bad Mario","SuperMario","Devil_Mario_Prime",
+"MarioPS","wario","Bowser","realistic_weegee","OWRemakeV2","omega weegee remake","New Madness Mario","POWERSTARMario","ThoutherMario",
+"bowser-spaceship","KoopaClownCar_IWBTG",
+"Rozwel Gustab AI",
+"cvsyoko","Gum_Haruhi","th123_Aya","th123_Meirin","Kamijo","th123_Sakuya","Sakuya","th123_Yuyuko","Ryougi","Aoko_AACC","Hisui_AACC","Tohno Akiha",
+"Chara lv20","undyne","Toriel","sans","Sans edit","Ultimate_Bad_Time_Sans_R","Betty Nor","Papyrus","Frisk",
+"spengbab","MVC1PatrickStar","Squidward","MoarKrabs",
+"yuki","guy_pots","Hel01","Jagi_r","makoto","sf3_alex",
+"Flamme","Lyzer","J_Mary","J_shermie","kyoko"
+];
 
-        const colors = ["#ff4d4d", "#4dff4d", "#4d4dff", "#ff4dff", "#4dffff", "#ffff4d", "#ff944d", "#944dff", "#4dff94", "#ff4d94"];
+const lettersContainer = document.getElementById('letters');
+const characterInfo = document.getElementById('characterInfo');
+const homeScreen = document.getElementById('homeScreen');
+const leftPanel = document.getElementById('leftPanel');
 
-        const homeButtons = document.getElementById('homeButtons');
-        const homePage = document.getElementById('homePage');
-        const characterPage = document.getElementById('characterPage');
-        const characterList = document.getElementById('characterList');
-        const searchBox = document.getElementById('searchBox');
+// colors/glow
+const glowColors = [
+"#ff4d4d","#4dff4d","#4d4dff","#ffcc00","#ff66ff","#00ffff","#ff9900","#ccff66","#66ccff","#ff6699",
+"#ff3399","#33ff99","#9933ff","#ff9933","#33ccff","#ff3366","#66ff33","#ff6666","#66ffff","#ff66cc"
+];
 
-        // Generate alphabetical buttons for home page
-        const letters = [...new Set(characters.map(c => c[0].toUpperCase()))].sort();
-        letters.forEach(letter => {
-            const btn = document.createElement('button');
-            btn.textContent = letter;
-            btn.onclick = () => showCharacters(letter);
-            homeButtons.appendChild(btn);
-        });
+const sortedCharacters = characters.slice().sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase()));
+const letterMap = {};
+sortedCharacters.forEach(c => {
+    const letter = c[0].toUpperCase();
+    if(!letterMap[letter]) letterMap[letter] = [];
+    letterMap[letter].push(c);
+});
 
-        function showCharacters(letter) {
-            homePage.style.display = 'none';
-            characterPage.style.display = 'block';
-            const filtered = characters.filter(c => c[0].toUpperCase() === letter);
-            renderList(filtered);
+// Alphabet buttons
+Object.keys(letterMap).sort().forEach((letter, idx) => {
+    const btn = document.createElement('button');
+    btn.textContent = `${letter} (${letterMap[letter].length})`;
+    btn.style.boxShadow = `0 0 8px ${glowColors[idx % glowColors.length]}, 0 0 15px ${glowColors[idx % glowColors.length]} inset`;
+    btn.onclick = () => {
+        btn.classList.add('glitch');
+        setTimeout(() => btn.classList.remove('glitch'), 300);
+        showChars(letter);
+    };
+    lettersContainer.appendChild(btn);
+});
+
+// Home buttons
+const homeButtons = document.querySelectorAll('#homeButtons button');
+homeButtons.forEach((btn, idx) => {
+    btn.style.boxShadow = `0 0 10px ${glowColors[idx % glowColors.length]}, 0 0 20px ${glowColors[idx % glowColors.length]} inset`;
+    btn.onclick = () => {
+        btn.classList.add('glitch');
+        setTimeout(() => btn.classList.remove('glitch'), 300);
+        if(btn.id === 'enterList') {
+            homeScreen.style.display = 'none';
+            leftPanel.style.display = 'block';
+        } else if(btn.id === 'mugenWiki') {
+            window.open('https://en.wikipedia.org/wiki/Mugen_(game_engine)', '_blank');
         }
+    };
+});
 
-        function goHome() {
-            homePage.style.display = 'flex';
-            characterPage.style.display = 'none';
-            searchBox.value = '';
-        }
+// Back to home button
+const backBtn = document.getElementById('backHomeBtn');
+backBtn.onclick = () => {
+    backBtn.classList.add('glitch');
+    setTimeout(() => backBtn.classList.remove('glitch'), 300);
+    leftPanel.style.display = 'none';
+    homeScreen.style.display = 'flex';
+};
 
-        function renderList(list) {
-            characterList.innerHTML = '';
-            list.forEach((char, index) => {
-                const li = document.createElement('li');
-                li.textContent = char;
-                li.style.color = colors[index % colors.length];
-                characterList.appendChild(li);
-            });
-        }
-
-        searchBox.addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            const filtered = characters.filter(c => c.toLowerCase().includes(query));
-            renderList(filtered);
-        });
-    </script>
+function showChars(letter) {
+    homeScreen.style.display = 'none';
+    leftPanel.style.display = 'block';
+    characterInfo.innerHTML = '';
+    letterMap[letter].forEach((char,index) => {
+        const div = document.createElement('div');
+        div.className = 'charDescription';
+        div.innerHTML = `<h3 style="color:${glowColors[index % glowColors.length]}">${char}</h3>
+                         <p>${char} is a character in MUGEN. Visit <a href="https://mugenarchive.com/" target="_blank">Mugen Archive</a> for downloads.</p>`;
+        characterInfo.appendChild(div);
+    });
+    document.getElementById('rightPanel').scrollTop = 0;
+}
+</script>
 </body>
 </html>
