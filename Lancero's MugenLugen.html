@@ -66,16 +66,6 @@ body {
     flex-direction: column;
     overflow-y: auto;
 }
-#rightPanel h2 {
-    color: #ffcc00;
-}
-#rightPanel a {
-    color: #ffcc00;
-    text-decoration: none;
-}
-#rightPanel a:hover {
-    text-decoration: underline;
-}
 .charDescription {
     margin-top: 15px;
     padding: 15px;
@@ -86,6 +76,7 @@ body {
 }
 .charDescription h3 {
     margin: 0 0 10px 0;
+    cursor: pointer;
 }
 .charDescription p {
     margin: 5px 0;
@@ -126,71 +117,47 @@ body {
 </div>
 
 <script>
+// Full MUGEN character roster
 const characters = [
-"MvC2Hulk","MvC2_Thor","Thor_AvX","Spiderman","Symbiote_Spiderman",
-"Ryo-KOF98","ITF_Kim","Joe-KOF98","Geese-KOF98","Iori-KOF98","Terry-KOF98",
-"Legendary Bogard 1.0","TerranceBongo","Haohmaru-KOF98","N-Ralf","Iori","LORD Igniz-Boss",
-"119way-mario","rock9","Nakoruru_Kofe","KOF_Tung_Fu_Rue","Washizuka3","cvshaohmaru_ex","Zorf-slc",
-"Iori Yagami CTN Lv2-KOFM","Kratos",
-"KENSHIROU_AI-Patch","KENSHIRONEW","kenshiro-KOFM","Kenshiro_C2","Kenoh","Kenoh[FleshdoomDBL&Lordmike]",
-"TOKI_AI-Patch","Shin_AI-Patch","Definitive Rei AI Alt","Rei_AI-Patch","JAGI","Man of the Benevolent star","ThoutherMario",
-"kfmZ","kfm720","Dirty kf man","the-kung-fu-man","Kung Fu Girl",
-"yujiro","baki","chicken","Joe Swanson","peter","chris",
-"shaq","jimmyhere","Markiplier","Charmx","jacksepticeye","AVGN","MIKU_APPEND","Miku Hatsune","MIKU_Natural",
-"RacingMiku2014_EV","Nitro Supreme Hatsune Miku","MVC Miku",
-"dhalsim","AI-bison","fei-long","sfz3adon","Chun_LI_JJ","Chunli","MvC2_Juri Han",
-"sakura","CVS_Cammy","Sagat","Honda_unotag","SagatMG","TurboModeGouki","oni-akuma-kofa","cvszangief_ex",
-"NormalKen","hurry_Ken","Ultimate_Ken","DaigoKen","MasterKen","KenMasters","Dragon-Ken","Violent Ken SF3","KaiSensei_Ken",
-"Guile","guile xi","Guy",
-"NormalRyu","CyberRyu","ShinSmoke Ryu","XRyu","heavy combo ryu","SegaGenesisRyu","EvilRyu","Ultimate_Ryu","koryu",
-"Zhou Lee","Shadow","KAGE 2.0","SHIN RYU","KaiSenseiRyu","Evil Ryu","MasterRyu","HyperGoDRyu","I_Wanna_Be_The_Ryu",
-"GokuSSJ4_EB","Goku Ultra Instinto Dominado","Xeno GogetaSSJ4","Emperor_Frieza","Cell","UI_GokuZ2","GohanBeastZ2","Songohan_CS",
-"Future_Gohan","Bardock_BT","Gokuub22V3","DBS Broly Movie Goku","Universal Tournament Goku","Songoku_US","Vegeta Super Transform 1.6",
-"OL_Yamcha","JirenZ2","Beerus","Ultra Instinct Goku",
-"KidGokuZ2i","GokuZ2_1.0-ai","SSJ_Goku_LegendaryZ2","SSJ 2 GokuZ2","SSJ3_GokuZ2i","SSG_GokuZ2","SSGSS_GokuZ2","BlackZ2i - Anime Version",
-"C18Z2","PiccoloZ2","YamchaZ2i","TenShinHanZ2","KrillinZ2","Raditz","NappaTA","Armor_VegetaZ2","VegettoZ2","SSJBlue_VegettoZ2",
-"Majin_Buu","FreezaZ2","Rose_Black","Beerus","BrolyNew","BrolyZ2",
-"Raditz_KN.Edit","Turles","P-Cell_KN.Edit","SSJ4Blory_KN.edit","VegettoBlue_KN",
-"SuperVegettoAI","Gogeta SSJ","New Nightmare Broly","nightmare","Super Gogeta4","GogetaSuper4","Super Vegetto4","VegettoBlue","Revenge Broli",
-"Vegeta All Forms","Gohan Blanco","God_Goku","Gogeta SSJ4","Goku Black SSR","Goku Legend SSJ","Super Goku Boss Ultimate","Bulla",
-"Ippo","LittleMac-KOFM","Rocky","miketyson","Balrog","TJ Combo","MikeTyson_IWBTG",
-"UC.Falcon","Supa Cirno","Etika","Morshu","Jerma985","OWRemakeV2","omega weegee remake","UncleJogel","Reggie-Skatore","Qi-Hao-Long","memelord",
-"Devil Jin","Kazuya","Devil_Jin","Jin_Kazama",
-"scorpionJUAN","MK1_RAIDEN","MK1_SUB-ZERO","MK1_CAGE","MK1_LIU-KANG","Johnny Cage MKT","CFJ_Liu_Kang",
-"Strider Hiryu","AI-eric","SFZ_Ehnyd","alucard_C","Alucard","Lord Soma","Soma Cruz",
-"Adel-BOSS","Ethos","Monika_B","ObamaBossFight",
-"Jin_Kisaragi_XI","kaguramutsuki","RagnaDSG","Yang",
-"pyron_cvs","Black_Apocalypse",
-"dracula","Schlussel-Pre-1.1",
-"AI-SonicMHII","Classic_Sonic","TailsMHII","KnuxMHII","silver","AI-ShadowMHII","Shadow JUS Updated","Sonic V1.0","Knuckles",
-"RED","Exetior Remake Version","Giygas","minosPRIME","norris","D-Donald",
-"Anakin","Paladin","Shin","akan","franza","kryo","Warrior_C","Thaldrix","Zarak","Chuck Norris","Arthas",
-"The Flash","randomness11","SHUMAWTF_Pingu",
-"Another God Akuma","R_Gouki","Shin Akuma","RareAkuma",
-"IORI-HOMER","destinydio",
-"Super Better Mario","Super Better Luigi","Super Better Yoshi","PeachMYTHOS","VGA_bowser","Super Bad Mario","SuperMario","Devil_Mario_Prime",
-"MarioPS","wario","Bowser","realistic_weegee","OWRemakeV2","omega weegee remake","New Madness Mario","POWERSTARMario","ThoutherMario",
-"bowser-spaceship","KoopaClownCar_IWBTG",
-"Rozwel Gustab AI",
-"cvsyoko","Gum_Haruhi","th123_Aya","th123_Meirin","Kamijo","th123_Sakuya","Sakuya","th123_Yuyuko","Ryougi","Aoko_AACC","Hisui_AACC","Tohno Akiha",
-"Chara lv20","undyne","Toriel","sans","Sans edit","Ultimate_Bad_Time_Sans_R","Betty Nor","Papyrus","Frisk",
-"spengbab","MVC1PatrickStar","Squidward","MoarKrabs",
-"yuki","guy_pots","Hel01","Jagi_r","makoto","sf3_alex",
-"Flamme","Lyzer","J_Mary","J_shermie","kyoko"
+"119way-mario","AI-ShadowMHII","AI-SonicMHII","AI-bison","Adel-BOSS","Aoko_AACC","Anakin","Another God Akuma",
+"Arthas","Armor_VegetaZ2","AVGN","Bardock_BT","Betty Nor","Black_Apocalypse","BlackZ2i - Anime Version","Bulla",
+"BrolyNew","BrolyZ2","C18Z2","CFJ_Liu_Kang","Chara lv20","Charmx","Chun_LI_JJ","Chunli","Chris",
+"Classic_Sonic","CyberRyu","DaigoKen","Definitive Rei AI Alt","Devil Jin","Devil_Jin","Devil_Mario_Prime",
+"Dirty kf man","D-Donald","Dragon-Ken","Emperor_Frieza","Etika","Evil Ryu","EvilRyu","Exetior Remake Version",
+"Flamme","Future_Gohan","Giygas","Goku Black SSR","Goku Legend SSJ","Goku Ultra Instinto Dominado","GokuSSJ4_EB",
+"Gohan Blanco","GohanBeastZ2","God_Goku","Gogeta SSJ","Gogeta SSJ4","GogetaSuper4","Guile","Guy",
+"Haohmaru-KOF98","Hel01","Honda_unotag","HyperGoDRyu","I_Wanna_Be_The_Ryu","IORI-HOMER","Iori","Iori Yagami CTN Lv2-KOFM",
+"Iori-KOF98","Jacksepticeye","J_Mary","J_shermie","JAGI","Jin_Kazama","Jin_Kisaragi_XI","Jerma985",
+"Joe Swanson","Joe-KOF98","Johnny Cage MKT","Kamijo","KaiSenseiRyu","KaiSensei_Ken","Kaguramutsuki","KENSHIROU_AI-Patch",
+"KENSHIRONEW","KenMasters","Kenoh","Kenoh[FleshdoomDBL&Lordmike]","kenshiro-KOFM","Kenshiro_C2","Kratos","koryu",
+"KOF_Tung_Fu_Rue","Kyoko","Lyzer","LittleMac-KOFM","Legendary Bogard 1.0","MasterRyu","MasterKen","Markiplier",
+"Man of the Benevolent star","MIKU_APPEND","Miku Hatsune","MIKU_Natural","MikeTyson_IWBTG","Morshu","MoarKrabs",
+"N-Ralf","Nakoruru_Kofe","NappaTA","New Madness Mario","Nitro Supreme Hatsune Miku","NormalKen","NormalRyu",
+"norris","NPCs","ObamaBossFight","OL_Yamcha","Oni-akuma-kofa","OWRemakeV2","P-Cell_KN.Edit",
+"Papyrus","PeachMYTHOS","Peter","PiccoloZ2","POWERSTARMario","Pyron_cvs","Raditz","Raditz_KN.Edit","Reggie-Skatore",
+"R_Gouki","Ryougi","Rocky","rock9","Rozwel Gustab AI","Rose_Black","Sagat","SagatMG","SFZ_Ehnyd","Shin","Shin Akuma",
+"Shin_AI-Patch","SHIN RYU","Shadow","Shadow JUS Updated","ShuMAWTF_Pingu","Silver","Supa Cirno","Spiderman",
+"Spengbab","Strider Hiryu","Super Better Luigi","Super Better Mario","Super Better Yoshi","Super Bad Mario",
+"Super Goku Boss Ultimate","Super Vegetto4","SuperVegettoAI","TailsMHII","TenShinHanZ2","The Flash","Thaldrix",
+"ThoutherMario","TJ Combo","Thor_AvX","Tohno Akiha","TORIEL","Terry-KOF98","TOKI_AI-Patch",
+"TurboModeGouki","UC.Falcon","Ultimate_Bad_Time_Sans_R","Ultimate_Ken","Ultimate_Ryu","Undyne","UI_GokuZ2",
+"VegettoBlue","VegettoBlue_KN","VegettoZ2","SSJBlue_VegettoZ2","Vegeta All Forms","Violen Ken SF3","VG_bowser",
+"Wario","Washizuka3","Warrior_C","Xeno GogetaSSJ4","XRyu","YamchaZ2i","Yang","Yujiro","Zhou Lee","Zorf-slc","Zarak"
 ];
+
+// Remove duplicates and sort
+const sortedCharacters = [...new Set(characters)].sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase()));
 
 const lettersContainer = document.getElementById('letters');
 const characterInfo = document.getElementById('characterInfo');
 const homeScreen = document.getElementById('homeScreen');
 const leftPanel = document.getElementById('leftPanel');
 
-// colors/glow
 const glowColors = [
 "#ff4d4d","#4dff4d","#4d4dff","#ffcc00","#ff66ff","#00ffff","#ff9900","#ccff66","#66ccff","#ff6699",
 "#ff3399","#33ff99","#9933ff","#ff9933","#33ccff","#ff3366","#66ff33","#ff6666","#66ffff","#ff66cc"
 ];
 
-const sortedCharacters = characters.slice().sort((a,b)=>a.toLowerCase().localeCompare(b.toLowerCase()));
 const letterMap = {};
 sortedCharacters.forEach(c => {
     const letter = c[0].toUpperCase();
@@ -236,6 +203,7 @@ backBtn.onclick = () => {
     homeScreen.style.display = 'flex';
 };
 
+// Show characters and lookup on MugenDB search
 function showChars(letter) {
     homeScreen.style.display = 'none';
     leftPanel.style.display = 'block';
@@ -243,12 +211,17 @@ function showChars(letter) {
     letterMap[letter].forEach((char,index) => {
         const div = document.createElement('div');
         div.className = 'charDescription';
+        const searchName = encodeURIComponent(char);
         div.innerHTML = `<h3 style="color:${glowColors[index % glowColors.length]}">${char}</h3>
-                         <p>${char} is a character in MUGEN. Visit <a href="https://mugenarchive.com/" target="_blank">Mugen Archive</a> for downloads.</p>`;
+                         <p>${char} is a character in MUGEN. Click the name to search on <a href="https://www.mugendb.com/" target="_blank">MugenDB</a>.</p>`;
+        div.querySelector('h3').onclick = () => {
+            window.open(`https://www.mugendb.com/search?q=${searchName}`, '_blank');
+        };
         characterInfo.appendChild(div);
     });
     document.getElementById('rightPanel').scrollTop = 0;
 }
 </script>
+
 </body>
 </html>
