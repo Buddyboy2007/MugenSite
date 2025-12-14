@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ikemen Character Roster</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: radial-gradient(circle at top, #0d0d0d, #1a1a1a);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(to right, #ff4d4d, #ffcc00);
+            padding: 25px;
+            text-align: center;
+            font-size: 2em;
+            color: #0d0d0d;
+            text-shadow: 2px 2px #000000;
+        }
+        #searchBox, #homeButtons {
+            display: block;
+            margin: 20px auto;
+            width: 80%;
+            text-align: center;
+        }
+        #searchBox {
+            padding: 12px;
+            font-size: 1em;
+            background-color: #222;
+            border: 2px solid #555;
+            color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px #ffcc00;
+        }
+        #homeButtons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #homeButtons button {
+            margin: 5px;
+            padding: 12px 18px;
+            font-size: 1em;
+            background: linear-gradient(45deg, #ff4d4d, #4d4dff);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 10px #000;
+        }
+        #homeButtons button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #fff;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto 50px auto;
+            max-width: 800px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        li {
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-shadow: 1px 1px #000;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        li:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #fff;
+        }
+        #backButton {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ffcc00, #ff4d4d);
+            color: #0d0d0d;
+            cursor: pointer;
+            box-shadow: 0 0 15px #000;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        #backButton:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>MUGEN Character Roster</header>
+    <div id="homePage">
+        <div id="homeButtons"></div>
+    </div>
+    <div id="characterPage" style="display:none;">
+        <input type="text" id="searchBox" placeholder="Search characters...">
+        <ul id="characterList"></ul>
+        <button id="backButton" onclick="goHome()">Back to Home</button>
+    </div>
+
+    <script>
+        const characters = [
+            "119way-mario","AI-SonicMHII","AI-ShadowMHII","AI-bison","Alucard","Anakin","Another God Akuma","Arthas","Armor_VegetaZ2","AVGN","Bardock_BT","Balrog","Beerus","Beerus","Betty Nor","Black_Apocalypse","BlackZ2i - Anime Version","Bulla","BrolyNew","BrolyZ2","C18Z2","Cell","Chara lv20","Charmx","Chun_LI_JJ","Chunli","Chris","Chuck Norris","Classic_Sonic","CFJ_Liu_Kang","CVS_Cammy","cvshaohmaru_ex","cvszangief_ex","DaigoKen","D-Donald","Devil Jin","Devil_Jin","Devil_Mario_Prime","Dirty kf man","Dragon-Ken","dracula","DSB Broly Movie Goku","Evil Ryu","EvilRyu","Emperor_Frieza","Etika","Exetior Remake Version","Flamme","fei-long","Future_Gohan","Giygas","God_Goku","Goku Black SSR","Goku Legend SSJ","GokuSSJ4_EB","Goku Ultra Instinto Dominado","Gokuub22V3","Gohan Blanco","GohanBeastZ2","Guile","guile xi","Guy","Hel01","Honda_unotag","HyperGoDRyu","I_Wanna_Be_The_Ryu","Iori","Iori-KOF98","IORI-HOMER","JAGI","J_Mary","J_shermie","Jacksepticeye","Jin_Kazama","Jin_Kisaragi_XI","Jerma985","Joe-KOF98","Joe Swanson","Johnny Cage MKT","KAGE 2.0","KaiSenseiRyu","KaiSensei_Ken","kaguramutsuki","KENSHIROU_AI-Patch","KENSHIRONEW","KenMasters","Kenoh","Kenoh[FleshdoomDBL&Lordmike]","kenshiro-KOFM","Kenshiro_C2","KidGokuZ2i","KoopaClownCar_IWBTG","KOF_Tung_Fu_Rue","Kratos","KrillinZ2","koryu","Kung Fu Girl","Kyoko","Legendary Bogard 1.0","LittleMac-KOFM","Lord Soma","LORD Igniz-Boss","Lyzer","Man of the Benevolent star","Markiplier","MasterKen","MasterRyu","MIKU_APPEND","MIKU_Natural","Miku Hatsune","MikeTyson_IWBTG","Morshu","MVC Miku","MVC1PatrickStar","N-Ralf","NappaTA","New Madness Mario","New Nightmare Broly","Nightmare","Nitro Supreme Hatsune Miku","NormalKen","NormalRyu","norris","OL_Yamcha","ObamaBossFight","OWRemakeV2","OWRemakeV2","omega weegee remake","omega weegee remake","oni-akuma-kofa","Paladin","PeachMYTHOS","P-Cell_KN.Edit","PiccoloZ2","POWERSTARMario","peter","pyron_cvs","Qi-Hao-Long","Raditz","Raditz_KN.Edit","RagnaDSG","Reggie-Skatore","RED","Rei_AI-Patch","Remake Version","Ryougi","Rocky","Rozwel Gustab AI","R_Gouki","Sagat","SagatMG","Sakuya","SFZ_Ehnyd","Shin","Shin Akuma","Shin_AI-Patch","SHIN RYU","ShinSmoke Ryu","Shadow","Shadow JUS Updated","Shaqu","Silver","Sonic V1.0","Spiderman","spengbab","SSG_GokuZ2","SSGSS_GokuZ2","SSJ 2 GokuZ2","SSJ3_GokuZ2i","SSJ4Blory_KN.edit","SSJBlue_VegettoZ2","SSJ_Goku_LegendaryZ2","Super Better Luigi","Super Better Mario","Super Better Yoshi","Super Bad Mario","Super Goku Boss Ultimate","Super Gogeta4","Super Vegetto4","SuperVegettoAI","Supa Cirno","Symbiote_Spiderman","TailsMHII","TenShinHanZ2","TerranceBongo","Terry-KOF98","Thaldrix","ThoutherMario","the-kung-fu-man","TJ Combo","Tohno Akiha","Toriel","TurboModeGouki","Ultimate_Bad_Time_Sans_R","Ultimate_Ken","Ultimate_Ryu","UC.Falcon","VGA_bowser","Vegeta All Forms","Vegeta Super Transform 1.6","VegettoBlue","VegettoBlue_KN","VegettoZ2","Violent Ken SF3","wario","Washizuka3","Xeno GogetaSSJ4","XRyu","YamchaZ2i","Yang","yujiro","yuki","Zorf-slc","Zhou Lee","Zarak"
+        ];
+
+        const colors = ["#ff4d4d", "#4dff4d", "#4d4dff", "#ff4dff", "#4dffff", "#ffff4d", "#ff944d", "#944dff", "#4dff94", "#ff4d94"];
+
+        const homeButtons = document.getElementById('homeButtons');
+        const homePage = document.getElementById('homePage');
+        const characterPage = document.getElementById('characterPage');
+        const characterList = document.getElementById('characterList');
+        const searchBox = document.getElementById('searchBox');
+
+        // Generate alphabetical buttons for home page
+        const letters = [...new Set(characters.map(c => c[0].toUpperCase()))].sort();
+        letters.forEach(letter => {
+            const btn = document.createElement('button');
+            btn.textContent = letter;
+            btn.onclick = () => showCharacters(letter);
+            homeButtons.appendChild(btn);
+        });
+
+        function showCharacters(letter) {
+            homePage.style.display = 'none';
+            characterPage.style.display = 'block';
+            const filtered = characters.filter(c => c[0].toUpperCase() === letter);
+            renderList(filtered);
+        }
+
+        function goHome() {
+            homePage.style.display = 'flex';
+            characterPage.style.display = 'none';
+            searchBox.value = '';
+        }
+
+        function renderList(list) {
+            characterList.innerHTML = '';
+            list.forEach((char, index) => {
+                const li = document.createElement('li');
+                li.textContent = char;
+                li.style.color = colors[index % colors.length];
+                characterList.appendChild(li);
+            });
+        }
+
+        searchBox.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const filtered = characters.filter(c => c.toLowerCase().includes(query));
+            renderList(filtered);
+        });
+    </script>
+</body>
+</html>
