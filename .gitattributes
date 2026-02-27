@@ -1,0 +1,54 @@
+# Git line ending configuration
+# This file ensures consistent line endings across different operating systems
+
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout
+*.js text
+*.ts text
+*.vue text
+*.css text
+*.html text
+*.json text
+*.md text
+*.txt text
+*.yml text
+*.yaml text
+
+# Declare files that will always have CRLF line endings on checkout
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Denote all files that are truly binary and should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+# Ignore line ending changes for specific files
+*.log -text
+*.min.js -text
+*.min.css -text

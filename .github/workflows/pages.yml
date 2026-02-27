@@ -1,0 +1,13 @@
+# GitHub Pages configuration
+# This file ensures GitHub Pages is properly configured for the repository
+name: Configure GitHub Pages
+
+on:
+  workflow_dispatch:
+
+jobs:
+  configure-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
