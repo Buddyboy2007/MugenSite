@@ -10,7 +10,6 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true
   },
-  // Base URL for GitHub Pages deployment
-  // Replace 'MugenSite' with your actual repository name
-  base: '/MugenSite/'
+  // Base URL for Cloudflare Pages deployment
+  base: '/'
 });
