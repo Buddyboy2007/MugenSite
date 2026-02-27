@@ -24,6 +24,8 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
+    # Skip gracefully if GitHub Pages is not enabled for this repository
+    if: ${{ github.event.repository.has_pages }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -41,3 +43,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  pages-disabled:
+    # Keep workflow successful when Pages is not enabled yet
+    if: ${{ !github.event.repository.has_pages }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pages is not enabled
+        run: echo "GitHub Pages is not enabled for this repository. Skipping deployment."
