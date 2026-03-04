@@ -22,23 +22,30 @@ npm run dev
 
 The development server will start on http://localhost:8080
 
-## Deployment to GitHub Pages
+## Deployment Options
 
-This project is configured for automatic deployment to GitHub Pages.
+This project supports deployment to both GitHub Pages and Cloudflare Pages.
 
-### Automatic Deployment
-- Push to the `main` branch triggers automatic deployment
-- The site will be available at `https://username.github.io/repository-name/`
-- Check the "Actions" tab for deployment status
+### GitHub Pages Deployment
+- **Workflow**: `.github/workflows/github-pages.yml`
+- **URL**: `https://username.github.io/repository-name/`
+- **Triggers**: Push to main branch
+- **Setup**: Enable GitHub Pages in repository settings (source: GitHub Actions)
+
+### Cloudflare Pages Deployment
+- **Workflow**: `.github/workflows/cloudflare.yml`
+- **URL**: `https://lanceromugen.pages.dev/`
+- **Triggers**: Push to main branch
+- **Setup**: Requires Cloudflare account and GitHub secrets
 
 ### Manual Deployment
 1. Go to GitHub repository
 2. Navigate to "Actions" tab
-3. Run the "Deploy Vue App to GitHub Pages" workflow
+3. Run either "Deploy Vue App to GitHub Pages" or "Deploy Vue App to Cloudflare Pages"
 
 ### Configuration
-- Update `base` in `src/vite.config.ts` to match your repository name
-- Enable GitHub Pages in repository settings (source: GitHub Actions)
+- Update `base` in `src/vite.config.ts` to match your repository name for GitHub Pages
+- For Cloudflare Pages, set up `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets
 
 For detailed deployment instructions, see [docs/setup/deployment.md](docs/setup/deployment.md).
 
