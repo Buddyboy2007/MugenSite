@@ -75,3 +75,8 @@ MugenSite/
 ├── start-dev.bat         # Windows startup script
 ├── lance v1/             # Legacy code (unchanged)
 └── wwwroot/              # Static files (unchanged)
+
+## 📖 Documentation
+Detailed documentation can be found in the following sections:
+- [Feature Index](./docs/features/README.md)
+- [Core Capabilities](./docs/features/core-capabilities.md)
